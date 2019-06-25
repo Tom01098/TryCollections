@@ -121,3 +121,31 @@ type TestClass () =
             Array.empty<float>
             |> Array.tryMinBy (fun x -> x * 2.)
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryReducePass () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryReduce (+)
+        Assert.AreEqual(Some 12., result)
+
+    [<TestMethod>]
+    member __.TryReduceFail () =
+        let result = 
+            Array.empty<float>
+            |> Array.tryReduce (+)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryReduceBackPass () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryReduceBack (+)
+        Assert.AreEqual(Some 12., result)
+
+    [<TestMethod>]
+    member __.TryReduceBackFail () =
+        let result = 
+            Array.empty<float>
+            |> Array.tryReduceBack (+)
+        Assert.AreEqual(None, result)

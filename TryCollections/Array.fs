@@ -36,3 +36,11 @@ let tryMin array =
 let tryMinBy projection array =
     if Array.isEmpty array then None
     else array |> Array.minBy projection |> Some
+
+let tryReduce reduction array =
+    if Array.isEmpty array then None
+    else array |> Array.reduce reduction |> Some
+
+let tryReduceBack reduction array =
+    if Array.isEmpty array then None
+    else array |> Array.reduceBack reduction |> Some
