@@ -93,3 +93,31 @@ type TestClass () =
             Array.empty<float>
             |> Array.tryMaxBy (fun x -> x * 2.)
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMinPass () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryMin
+        Assert.AreEqual(Some 1., result)
+
+    [<TestMethod>]
+    member __.TryMinFail () =
+        let result = 
+            Array.empty<float>
+            |> Array.tryMin
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMinByPass () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryMinBy (fun x -> x * 2.)
+        Assert.AreEqual(Some 1., result)
+
+    [<TestMethod>]
+    member __.TryMinByFail () =
+        let result = 
+            Array.empty<float>
+            |> Array.tryMinBy (fun x -> x * 2.)
+        Assert.AreEqual(None, result)

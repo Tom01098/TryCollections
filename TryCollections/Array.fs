@@ -28,3 +28,11 @@ let tryMax array =
 let tryMaxBy projection array =
     if Array.isEmpty array then None
     else array |> Array.maxBy projection |> Some
+
+let tryMin array =
+    if Array.isEmpty array then None
+    else array |> Array.min |> Some
+
+let tryMinBy projection array =
+    if Array.isEmpty array then None
+    else array |> Array.minBy projection |> Some
