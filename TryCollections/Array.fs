@@ -20,3 +20,11 @@ let tryExactlyOne array =
 let tryGet array index =
     if index >= Array.length array || index < 0 then None
     else Array.get array index |> Some
+
+let tryMax array =
+    if Array.isEmpty array then None
+    else array |> Array.max |> Some
+
+let tryMaxBy projection array =
+    if Array.isEmpty array then None
+    else array |> Array.maxBy projection |> Some

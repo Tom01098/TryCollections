@@ -65,3 +65,31 @@ type TestClass () =
         let result = 
             Array.tryGet [|1.; 4.; 7.|] -1
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMaxPass () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryMax
+        Assert.AreEqual(Some 7., result)
+
+    [<TestMethod>]
+    member __.TryMaxFail () =
+        let result = 
+            Array.empty<float>
+            |> Array.tryMax
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMaxByPass () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryMaxBy (fun x -> x * 2.)
+        Assert.AreEqual(Some 7., result)
+
+    [<TestMethod>]
+    member __.TryMaxByFail () =
+        let result = 
+            Array.empty<float>
+            |> Array.tryMaxBy (fun x -> x * 2.)
+        Assert.AreEqual(None, result)
