@@ -1,10 +1,9 @@
 namespace TryCollections.Tests
 
-open System
 open Microsoft.VisualStudio.TestTools.UnitTesting
 
 [<TestClass>]
-type TestClass () =
+type ArrayTests () =
 
     [<TestMethod>]
     member __.TryAveragePass () =
