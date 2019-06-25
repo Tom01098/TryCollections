@@ -149,3 +149,21 @@ type TestClass () =
             Array.empty<float>
             |> Array.tryReduceBack (+)
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TrySubPass () =
+        let result = 
+            Array.trySub [|1.; 4.; 7.|] 1 2
+        Assert.AreEqual(Some [|4.; 7.|], result)
+
+    [<TestMethod>]
+    member __.TrySubFail () =
+        let result = 
+            Array.trySub [|1.; 4.; 7.|] -1 2
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TrySub2Fail () =
+        let result = 
+            Array.trySub [|1.; 4.; 7.|] 0 4
+        Assert.AreEqual(None, result)

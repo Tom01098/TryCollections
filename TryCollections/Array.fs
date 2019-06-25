@@ -44,3 +44,14 @@ let tryReduce reduction array =
 let tryReduceBack reduction array =
     if Array.isEmpty array then None
     else array |> Array.reduceBack reduction |> Some
+
+let trySet array index value =
+    if index >= Array.length array || index < 0 then None
+    else value |> Array.set array index |> Some
+
+let trySub array startIndex count =
+    if startIndex < 0 
+        || startIndex + count > Array.length array
+        || count < 1 
+    then None
+    else Array.sub array startIndex count |> Some
