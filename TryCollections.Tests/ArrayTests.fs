@@ -47,3 +47,21 @@ type TestClass () =
             [|1.; 4.; 7.|]
             |> Array.tryChunkBySize 0
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryGetPass () =
+        let result = 
+            Array.tryGet [|1.; 4.; 7.|] 2
+        Assert.AreEqual(Some 7., result)
+
+    [<TestMethod>]
+    member __.TryGetFail () =
+        let result = 
+            Array.tryGet [|1.; 4.; 7.|] 3
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryGetFail2 () =
+        let result = 
+            Array.tryGet [|1.; 4.; 7.|] -1
+        Assert.AreEqual(None, result)
