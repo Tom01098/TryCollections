@@ -55,3 +55,14 @@ let trySub array startIndex count =
         || count < 1 
     then None
     else Array.sub array startIndex count |> Some
+
+let tryZip array1 array2 =
+    if Array.length array1 = Array.length array2
+    then Array.zip array1 array2 |> Some
+    else None
+
+let tryZip3 array1 array2 array3 =
+    if Array.length array1 <> Array.length array2
+        || Array.length array1 <> Array.length array3
+    then None
+    else Array.zip3 array1 array2 array3 |> Some

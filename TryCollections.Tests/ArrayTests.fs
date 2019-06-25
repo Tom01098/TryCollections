@@ -166,3 +166,27 @@ type ArrayTests () =
         let result = 
             Array.trySub [|1.; 4.; 7.|] 0 4
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryZipPass () =
+        let result = 
+            Array.tryZip [|1|] [|2|]
+        Assert.AreEqual(Some [|1, 2|], result)
+
+    [<TestMethod>]
+    member __.TryZipFail () =
+        let result = 
+            Array.tryZip [|1; 2|] [|2|]
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryZip3Pass () =
+        let result = 
+            Array.tryZip3 [|1|] [|2|] [|3|]
+        Assert.AreEqual(Some [|1, 2, 3|], result)
+
+    [<TestMethod>]
+    member __.TryZip3Fail () =
+        let result = 
+            Array.tryZip3 [|1; 2|] [|2|] [|3|]
+        Assert.AreEqual(None, result)
