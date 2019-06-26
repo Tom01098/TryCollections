@@ -62,6 +62,20 @@ type ArrayTests () =
         Assert.AreEqual(None, result)
 
     [<TestMethod>]
+    member __.TryExists2Pass () =
+        let result = 
+            ([|1; 2|], [|4; 2|])
+            ||> Array.tryExists2 (fun x y -> x + y = 5)
+        Assert.AreEqual(Some true, result)
+
+    [<TestMethod>]
+    member __.TryExists2Fail () =
+        let result = 
+            ([|1|], [|4; 2|])
+            ||> Array.tryExists2 (fun x y -> x + y = 5)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
     member __.TryGetPass () =
         let result = 
             Array.tryGet [|1.; 4.; 7.|] 2

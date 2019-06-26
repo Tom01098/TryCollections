@@ -60,3 +60,17 @@ type ListTests () =
             [1.; 4.; 7.]
             |> List.tryExactlyOne
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryExists2Pass () =
+        let result = 
+            ([1; 2], [4; 2])
+            ||> List.tryExists2 (fun x y -> x + y = 5)
+        Assert.AreEqual(Some true, result)
+
+    [<TestMethod>]
+    member __.TryExists2Fail () =
+        let result = 
+            ([1; 3], [2])
+            ||> List.tryExists2 (fun x y -> x + y = 5)
+        Assert.AreEqual(None, result)

@@ -17,6 +17,10 @@ let tryExactlyOne array =
     if Array.length array <> 1 then None
     else array |> Array.exactlyOne |> Some
 
+let tryExists2 predicate array1 array2 =
+    if Array.length array1 <> Array.length array2 then None
+    else Array.exists2 predicate array1 array2 |> Some
+
 let tryGet array index =
     if index >= Array.length array || index < 0 then None
     else Array.get array index |> Some

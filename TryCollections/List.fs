@@ -16,3 +16,7 @@ let tryChunkBySize chunkSize list =
 let tryExactlyOne list =
     if List.length list <> 1 then None
     else list |> List.exactlyOne |> Some
+
+let tryExists2 predicate list1 list2 =
+    if List.length list1 <> List.length list2 then None
+    else List.exists2 predicate list1 list2 |> Some
