@@ -48,6 +48,20 @@ type ArrayTests () =
         Assert.AreEqual(None, result)
 
     [<TestMethod>]
+    member __.TryExactlyOnePass () =
+        let result = 
+            [|1|]
+            |> Array.tryExactlyOne
+        Assert.AreEqual(Some 1, result)
+
+    [<TestMethod>]
+    member __.TryExactlyOneFail () =
+        let result = 
+            [|1.; 4.; 7.|]
+            |> Array.tryExactlyOne
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
     member __.TryGetPass () =
         let result = 
             Array.tryGet [|1.; 4.; 7.|] 2

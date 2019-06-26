@@ -15,7 +15,7 @@ let tryChunkBySize chunkSize array =
 
 let tryExactlyOne array =
     if Array.length array <> 1 then None
-    else array |> Array.exactlyOne
+    else array |> Array.exactlyOne |> Some
 
 let tryGet array index =
     if index >= Array.length array || index < 0 then None

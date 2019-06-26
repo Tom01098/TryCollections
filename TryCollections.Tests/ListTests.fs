@@ -46,3 +46,17 @@ type ListTests () =
             [1.; 4.; 7.]
             |> List.tryChunkBySize 0
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryExactlyOnePass () =
+        let result = 
+            [1]
+            |> List.tryExactlyOne
+        Assert.AreEqual(Some 1, result)
+
+    [<TestMethod>]
+    member __.TryExactlyOneFail () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryExactlyOne
+        Assert.AreEqual(None, result)

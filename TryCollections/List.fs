@@ -12,3 +12,7 @@ let inline tryAverageBy projection list =
 let tryChunkBySize chunkSize list =
     if chunkSize < 1 then None
     else list |> List.chunkBySize chunkSize |> Some
+
+let tryExactlyOne list =
+    if List.length list <> 1 then None
+    else list |> List.exactlyOne |> Some
