@@ -19,7 +19,15 @@ let tryExactlyOne array =
 
 let tryExists2 predicate array1 array2 =
     if Array.length array1 <> Array.length array2 then None
-    else Array.exists2 predicate array1 array2 |> Some
+    else (array1, array2) ||> Array.exists2 predicate |> Some
+
+let tryFold2 folder state array1 array2 =
+    if Array.length array1 <> Array.length array2 then None
+    else (array1, array2) ||> Array.fold2 folder state |> Some
+
+let tryFoldBack2 folder state array1 array2 =
+    if Array.length array1 <> Array.length array2 then None
+    else Array.foldBack2 folder array1 array2 state |> Some
 
 let tryGet array index =
     if index >= Array.length array || index < 0 then None
@@ -62,11 +70,11 @@ let trySub array startIndex count =
 
 let tryZip array1 array2 =
     if Array.length array1 = Array.length array2
-    then Array.zip array1 array2 |> Some
+    then (array1, array2) ||> Array.zip |> Some
     else None
 
 let tryZip3 array1 array2 array3 =
     if Array.length array1 <> Array.length array2
         || Array.length array1 <> Array.length array3
     then None
-    else Array.zip3 array1 array2 array3 |> Some
+    else (array1, array2, array3) |||> Array.zip3 |> Some
