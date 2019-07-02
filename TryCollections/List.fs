@@ -28,3 +28,7 @@ let tryFold2 folder state list1 list2 =
 let tryFoldBack2 folder state list1 list2 =
     if List.length list1 <> List.length list2 then None
     else List.foldBack2 folder list1 list2 state |> Some
+
+let tryForall2 predicate list1 list2 =
+    if List.length list1 <> List.length list2 then None
+    else (list1, list2) ||> List.forall2 predicate |> Some

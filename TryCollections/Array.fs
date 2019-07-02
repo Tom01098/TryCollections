@@ -29,6 +29,10 @@ let tryFoldBack2 folder state array1 array2 =
     if Array.length array1 <> Array.length array2 then None
     else Array.foldBack2 folder array1 array2 state |> Some
 
+let tryForall2 predicate array1 array2 =
+    if Array.length array1 <> Array.length array2 then None
+    else (array1, array2) ||> Array.forall2 predicate |> Some
+
 let tryGet array index =
     if index >= Array.length array || index < 0 then None
     else Array.get array index |> Some

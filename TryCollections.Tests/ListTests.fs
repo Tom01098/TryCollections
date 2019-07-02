@@ -102,3 +102,17 @@ type ListTests () =
             ([1], [4; 2])
             ||> List.tryFoldBack2 (fun x y z -> x + y + z) 0
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryForall2Pass () =
+        let result = 
+            ([1; 2], [4; 2])
+            ||> List.tryForall2 (=)
+        Assert.AreEqual(Some false, result)
+
+    [<TestMethod>]
+    member __.TryForall2Fail () =
+        let result = 
+            ([1], [4; 2])
+            ||> List.tryForall2 (=)
+        Assert.AreEqual(None, result)

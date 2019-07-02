@@ -104,6 +104,20 @@ type ArrayTests () =
         Assert.AreEqual(None, result)
 
     [<TestMethod>]
+    member __.TryForall2Pass () =
+        let result = 
+            ([|1; 2|], [|4; 2|])
+            ||> Array.tryForall2 (=)
+        Assert.AreEqual(Some false, result)
+
+    [<TestMethod>]
+    member __.TryForall2Fail () =
+        let result = 
+            ([|1|], [|4; 2|])
+            ||> Array.tryForall2 (=)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
     member __.TryGetPass () =
         let result = 
             Array.tryGet [|1.; 4.; 7.|] 2
