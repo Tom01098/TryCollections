@@ -32,3 +32,7 @@ let tryFoldBack2 folder state list1 list2 =
 let tryForall2 predicate list1 list2 =
     if List.length list1 <> List.length list2 then None
     else (list1, list2) ||> List.forall2 predicate |> Some
+
+let tryIter2 action list1 list2 =
+    if List.length list1 <> List.length list2 then None
+    else (list1, list2) ||> List.iter2 action |> Some

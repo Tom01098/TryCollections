@@ -136,6 +136,20 @@ type ArrayTests () =
         Assert.AreEqual(None, result)
 
     [<TestMethod>]
+    member __.TryIter2Pass () =
+        let result = 
+            ([|1; 2|], [|4; 2|])
+            ||> Array.tryIter2 (fun x y -> ignore (x, y))
+        Assert.AreEqual(Some (), result)
+
+    [<TestMethod>]
+    member __.TryIter2Fail () =
+        let result = 
+            ([|1|], [|4; 2|])
+            ||> Array.tryIter2 (fun x y -> ignore (x, y))
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
     member __.TryMaxPass () =
         let result = 
             [|1.; 4.; 7.|]

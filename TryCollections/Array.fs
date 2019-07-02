@@ -37,6 +37,10 @@ let tryGet array index =
     if index >= Array.length array || index < 0 then None
     else Array.get array index |> Some
 
+let tryIter2 action array1 array2 =
+    if Array.length array1 <> Array.length array2 then None
+    else (array1, array2) ||> Array.iter2 action |> Some
+
 let tryMax array =
     if Array.isEmpty array then None
     else array |> Array.max |> Some
