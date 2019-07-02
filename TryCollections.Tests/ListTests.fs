@@ -74,3 +74,31 @@ type ListTests () =
             ([1; 3], [2])
             ||> List.tryExists2 (fun x y -> x + y = 5)
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryFold2Pass () =
+        let result = 
+            ([|1; 2|], [|4; 2|])
+            ||> Array.tryFold2 (fun x y z -> x + y + z) 0
+        Assert.AreEqual(Some 9, result)
+
+    [<TestMethod>]
+    member __.TryFold2Fail () =
+        let result = 
+            ([1], [4; 2])
+            ||> List.tryFold2 (fun x y z -> x + y + z) 0
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryFoldBack2Pass () =
+        let result = 
+            ([1; 2], [4; 2])
+            ||> List.tryFoldBack2 (fun x y z -> x + y + z) 0
+        Assert.AreEqual(Some 9, result)
+
+    [<TestMethod>]
+    member __.TryFoldBack2Fail () =
+        let result = 
+            ([1], [4; 2])
+            ||> List.tryFoldBack2 (fun x y z -> x + y + z) 0
+        Assert.AreEqual(None, result)
