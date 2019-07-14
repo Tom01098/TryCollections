@@ -40,3 +40,7 @@ let tryIter2 action list1 list2 =
 let tryMap2 mapping list1 list2 =
     if List.length list1 <> List.length list2 then None
     else (list1, list2) ||> List.map2 mapping |> Some
+
+let tryMap3 mapping list1 list2 list3 =
+    if List.length list1 <> List.length list2 || List.length list1 <> List.length list3 then None
+    else (list1, list2, list3) |||> List.map3 mapping |> Some

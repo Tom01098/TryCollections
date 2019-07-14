@@ -164,6 +164,20 @@ type ArrayTests () =
         Assert.AreEqual(None, result)
 
     [<TestMethod>]
+    member __.TryMap3Pass () =
+        let result = 
+            ([|1; 2|], [|4; 2|], [|2; 2|])
+            |||> Array.tryMap3 (fun x y z -> x + y + z)
+        Assert.AreEqual(Some [|7; 6|], result)
+
+    [<TestMethod>]
+    member __.TryMap3Fail () =
+        let result = 
+            ([|1|], [|4; 2|], [|2; 2|])
+            |||> Array.tryMap3 (fun x y z -> x + y + z)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
     member __.TryMaxPass () =
         let result = 
             [|1.; 4.; 7.|]

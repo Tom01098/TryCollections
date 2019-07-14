@@ -45,6 +45,10 @@ let tryMap2 mapping array1 array2 =
     if Array.length array1 <> Array.length array2 then None
     else (array1, array2) ||> Array.map2 mapping |> Some
 
+let tryMap3 mapping array1 array2 array3 =
+    if Array.length array1 <> Array.length array2 || Array.length array1 <> Array.length array3 then None
+    else (array1, array2, array3) |||> Array.map3 mapping |> Some
+
 let tryMax array =
     if Array.isEmpty array then None
     else array |> Array.max |> Some
