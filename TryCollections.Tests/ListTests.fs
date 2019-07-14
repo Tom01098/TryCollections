@@ -130,3 +130,17 @@ type ListTests () =
             ([1], [4; 2])
             ||> List.tryIter2 (fun x y -> ignore (x, y))
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMap2Pass () =
+        let result = 
+            ([1; 2], [4; 2])
+            ||> List.tryMap2 (fun x y -> x + y)
+        Assert.AreEqual(Some [5; 4], result)
+
+    [<TestMethod>]
+    member __.TryMap2Fail () =
+        let result = 
+            ([1], [4; 2])
+            ||> List.tryMap2 (fun x y -> x + y)
+        Assert.AreEqual(None, result)

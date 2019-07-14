@@ -150,6 +150,20 @@ type ArrayTests () =
         Assert.AreEqual(None, result)
 
     [<TestMethod>]
+    member __.TryMap2Pass () =
+        let result = 
+            ([|1; 2|], [|4; 2|])
+            ||> Array.tryMap2 (fun x y -> x + y)
+        Assert.AreEqual(Some [|5; 4|], result)
+
+    [<TestMethod>]
+    member __.TryMap2Fail () =
+        let result = 
+            ([|1|], [|4; 2|])
+            ||> Array.tryMap2 (fun x y -> x + y)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
     member __.TryMaxPass () =
         let result = 
             [|1.; 4.; 7.|]

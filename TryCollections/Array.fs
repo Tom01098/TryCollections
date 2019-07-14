@@ -41,6 +41,10 @@ let tryIter2 action array1 array2 =
     if Array.length array1 <> Array.length array2 then None
     else (array1, array2) ||> Array.iter2 action |> Some
 
+let tryMap2 mapping array1 array2 =
+    if Array.length array1 <> Array.length array2 then None
+    else (array1, array2) ||> Array.map2 mapping |> Some
+
 let tryMax array =
     if Array.isEmpty array then None
     else array |> Array.max |> Some

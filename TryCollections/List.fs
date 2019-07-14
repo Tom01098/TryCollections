@@ -36,3 +36,7 @@ let tryForall2 predicate list1 list2 =
 let tryIter2 action list1 list2 =
     if List.length list1 <> List.length list2 then None
     else (list1, list2) ||> List.iter2 action |> Some
+
+let tryMap2 mapping list1 list2 =
+    if List.length list1 <> List.length list2 then None
+    else (list1, list2) ||> List.map2 mapping |> Some
