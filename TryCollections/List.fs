@@ -44,3 +44,19 @@ let tryMap2 mapping list1 list2 =
 let tryMap3 mapping list1 list2 list3 =
     if List.length list1 <> List.length list2 || List.length list1 <> List.length list3 then None
     else (list1, list2, list3) |||> List.map3 mapping |> Some
+
+let tryMax list =
+    if List.isEmpty list then None
+    else list |> List.max |> Some
+
+let tryMaxBy projection list =
+    if List.isEmpty list then None
+    else list |> List.maxBy projection |> Some
+
+let tryMin list =
+    if List.isEmpty list then None
+    else list |> List.min |> Some
+
+let tryMinBy projection list =
+    if List.isEmpty list then None
+    else list |> List.minBy projection |> Some

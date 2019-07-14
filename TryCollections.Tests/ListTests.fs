@@ -158,3 +158,59 @@ type ListTests () =
             ([1], [4; 2], [2; 2])
             |||> List.tryMap3 (fun x y z -> x + y + z)
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMaxPass () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryMax
+        Assert.AreEqual(Some 7., result)
+
+    [<TestMethod>]
+    member __.TryMaxFail () =
+        let result = 
+            List.empty<float>
+            |> List.tryMax
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMaxByPass () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryMaxBy (fun x -> x * 2.)
+        Assert.AreEqual(Some 7., result)
+
+    [<TestMethod>]
+    member __.TryMaxByFail () =
+        let result = 
+            List.empty<float>
+            |> List.tryMaxBy (fun x -> x * 2.)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMinPass () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryMin
+        Assert.AreEqual(Some 1., result)
+
+    [<TestMethod>]
+    member __.TryMinFail () =
+        let result = 
+            List.empty<float>
+            |> List.tryMin
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryMinByPass () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryMinBy (fun x -> x * 2.)
+        Assert.AreEqual(Some 1., result)
+
+    [<TestMethod>]
+    member __.TryMinByFail () =
+        let result = 
+            List.empty<float>
+            |> List.tryMinBy (fun x -> x * 2.)
+        Assert.AreEqual(None, result)
