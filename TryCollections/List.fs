@@ -60,3 +60,11 @@ let tryMin list =
 let tryMinBy projection list =
     if List.isEmpty list then None
     else list |> List.minBy projection |> Some
+
+let tryReduce reduction list =
+    if List.isEmpty list then None
+    else list |> List.reduce reduction |> Some
+
+let tryReduceBack reduction list =
+    if List.isEmpty list then None
+    else list |> List.reduceBack reduction |> Some

@@ -214,3 +214,31 @@ type ListTests () =
             List.empty<float>
             |> List.tryMinBy (fun x -> x * 2.)
         Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryReducePass () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryReduce (+)
+        Assert.AreEqual(Some 12., result)
+
+    [<TestMethod>]
+    member __.TryReduceFail () =
+        let result = 
+            List.empty<float>
+            |> List.tryReduce (+)
+        Assert.AreEqual(None, result)
+
+    [<TestMethod>]
+    member __.TryReduceBackPass () =
+        let result = 
+            [1.; 4.; 7.]
+            |> List.tryReduceBack (+)
+        Assert.AreEqual(Some 12., result)
+
+    [<TestMethod>]
+    member __.TryReduceBackFail () =
+        let result = 
+            List.empty<float>
+            |> List.tryReduceBack (+)
+        Assert.AreEqual(None, result)
